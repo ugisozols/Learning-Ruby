@@ -5,22 +5,24 @@ begin
   char_count_without_whitespace = 0
   line_count = 0
   word_count = 0
+  sentence_count = 0
+  paragraph_count = 0
 
   file = File.open(input_file, "r")
-  all_lines = file.readlines
-  file.close
 
-  all_lines.each do |line|
+  file.readlines.each do |line|
     line_count += 1
     char_count_with_whitespace += line.length
     word_count += line.split.length
-    char_count_without_whitespace += line.gsub(" ", "").scan(/./).length
+    char_count_without_whitespace += line.gsub(/\s+/, "").scan(/./).length
+    sentence_count += line.scan(/\.|\!|\?/).length
+    paragraph_count += line.scan(/\n\n/).length # not working ...
   end
 
-  sentence_count = all_lines.join.split(/\.|\!|\?/).length
-  paragraph_count = all_lines.join.split("\n\n").length
   avg_words_per_sentence =  word_count / sentence_count.to_f
   avg_sentences_per_paragraph = sentence_count / paragraph_count.to_f
+
+  file.close
 
   puts "1. Character count: #{char_count_with_whitespace}"
   puts "2. Character count (excluding spaces): #{char_count_without_whitespace}"
