@@ -11,7 +11,7 @@ char_count_without_whitespace = 0
 line_count = 0
 word_count = 0
 sentence_count = 0
-paragraph_count = 0
+paragraph_count = 1
 
 File.open(input_file).readlines.each do |line|
   line_count += 1
@@ -19,7 +19,7 @@ File.open(input_file).readlines.each do |line|
   word_count += line.split.length
   char_count_without_whitespace += line.gsub(/\s+/, "").scan(/./).length
   sentence_count += line.scan(/\.|\!|\?/).length
-  paragraph_count += line.scan(/\n\n/).length # not working ...
+  paragraph_count += 1 if line == "\n"
 end
 
 avg_words_per_sentence =  word_count / sentence_count.to_f
