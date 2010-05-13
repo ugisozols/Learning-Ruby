@@ -1,6 +1,6 @@
 1.upto(100) do |num|
-  num = "FizzBuzz" if num % 3 == 0 && num % 5 == 0
-  num = "Fizz" if num % 3 == 0
-  num = "Buzz" if num % 5 == 0
-  puts num
+  str = ""
+  str << "Fizz" if num % 3 == 0
+  str << "Buzz" if num % 5 == 0
+  puts str.empty? ? num : str
 end
