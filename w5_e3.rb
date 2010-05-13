@@ -10,7 +10,11 @@ end
 
 filter = TextFilter.new
 
-while user_input = gets.chomp do
-  exit if filter.bye_counter(user_input) == 3
-  puts user_input.eql?(user_input.upcase) ? "NO, NOT SINCE #{1930 + rand(21)}!" : "HUH?! SPEAK UP, SONNY!"
+puts "* You entered chat room..."
+puts "Granny: sup?"
+
+until filter.bye_counter(user_input = gets.chomp) == 3 do
+  puts "Granny: " << (user_input.eql?(user_input.upcase) ? "NO, NOT SINCE #{1930 + rand(21)}!" : "HUH?! SPEAK UP, SONNY!")
 end
+
+puts "* Granny has left chat room..."
